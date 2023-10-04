@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "LeetCode Submit Guard",
   "version": "1.0",
-  "description": "No more accidental submissions on LeetCode. Try today! 1",
+  "description": "No more accidental submissions on LeetCode. Try today!",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
