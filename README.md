@@ -74,9 +74,18 @@ The plugin does **not** gather or use any of the user's personal information. Fo
 
 ## 6. Installation & Setup
 
+#### Through google web store:
+
 1. Visit the Chrome Web Store.
 2. Search for **LeetCode Submit Guard**.
 3. Click "Add to Chrome" and adhere to the on-screen instructions.
+
+#### Manually
+
+1. Clone or download this repository into a folder on your computer
+2. Open google chrome and navigate to chrome://extensions/
+3. In the top tight corner switch on the **developer mode** switch
+4. In the left top corner click **Load unpacked** > select the folder you just cloned this project into
 
 ---
 
