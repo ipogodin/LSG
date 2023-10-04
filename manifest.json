@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Leetcode Submit Prevention",
-  "version": "0.15",
-  "description": "Prevent accidental submissions by requiring a double press in leetcode v.0.14",
+  "name": "LeetCode Submit Guard",
+  "version": "1.0",
+  "description": "No more accidental submissions on LeetCode. Try today! 1",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",

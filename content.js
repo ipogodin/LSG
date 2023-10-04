@@ -10,6 +10,7 @@ styleSheet.innerText = `
 `;
 document.head.appendChild(styleSheet);
 
+const overlayClassName = 'lsg-overlay';
 
 function createOverlay(button) {
     // Capture button's styles
@@ -23,7 +24,7 @@ function createOverlay(button) {
 
     // Create an overlay div
     const overlay = document.createElement('div');
-    overlay.className = 'overlay';  // Add a class for easier identification
+    overlay.className = overlayClassName;  // Add a class for easier identification
 
     // Mimic the button's style
     overlay.style.width = button.offsetWidth + "px";
@@ -32,6 +33,7 @@ function createOverlay(button) {
     overlay.style.top = "0";
     overlay.style.left = "0";
     overlay.style.zIndex = "10000";
+    overlay.style.pointerEvents = "auto";
     overlay.style.display = "flex";
     overlay.style.justifyContent = "center";
     overlay.style.alignItems = "center";
@@ -44,7 +46,7 @@ function createOverlay(button) {
     overlay.style.overflow = 'hidden';
 
     // Set the overlay's background color to a slightly different shade of green
-    overlay.style.background = "rgba(77, 193, 141, 0.8)";  // You can adjust this to your desired shade
+    overlay.style.background = "rgba(41, 111, 232, 0.8)";  // You can adjust this to your desired shade
 
     // Create a text container
     const textContainer = document.createElement('div');
@@ -66,6 +68,18 @@ function createOverlay(button) {
     button.style.position = 'relative';
     button.appendChild(overlay);
 
+    overlay.addEventListener('click', (e) => {
+        e.stopPropagation();
+        overlay.remove();
+
+        //reappear in 3 seconds if the overlay is pressed once
+        restoreTimeout = setTimeout(() => {
+            if (!document.querySelector('.' + overlayClassName)) {
+                createOverlay(button);
+            }
+        }, 3000);
+    });
+
     return overlay;
 }
 
@@ -75,21 +89,25 @@ function attachOverlayWhenButtonAppears() {
     const targetedSubmitButton = document.querySelector('button[data-e2e-locator="console-submit-button"]');
     if (targetedSubmitButton && !overlayAdded) { // Check the flag here
         overlayAdded = true;  // Set the flag as true
-        const overlay = createOverlay(targetedSubmitButton);
 
-        overlay.addEventListener('click', (e) => {
-            e.stopPropagation();
-            overlay.remove();
-        });
-
+        createOverlayIfRequired();
         return true;
     }
     return false;
 }
 
+/**
+*  creating overlay over submit button if required
+*/
+function createOverlayIfRequired() {
+    const targetedSubmitButton = document.querySelector('button[data-e2e-locator="console-submit-button"]');
+    if (targetedSubmitButton && !document.querySelector('.' + overlayClassName)) {
+        overlay = createOverlay(targetedSubmitButton);
+    }
+}
 
-chrome.storage.sync.get({ 'isDoublePressActive': true }, ({ isDoublePressActive }) => {
-    if (isDoublePressActive) {
+chrome.storage.sync.get({ 'isPluginActive': true }, ({ isPluginActive }) => {
+    if (isPluginActive) {
         if (!attachOverlayWhenButtonAppears()) {
             // If the button is not present immediately, use MutationObserver to wait for it
             const observer = new MutationObserver((mutationsList, observer) => {
@@ -105,5 +123,23 @@ chrome.storage.sync.get({ 'isDoublePressActive': true }, ({ isDoublePressActive 
             // Start observing the document with the configured parameters
             observer.observe(document.body, { childList: true, subtree: true });
         }
+    }
+});
+
+let overlay;
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (typeof message.isPluginActive !== 'undefined') {
+        if (message.isPluginActive) {
+            createOverlayIfRequired();
+        } else {
+            // Handle plugin deactivation, like removing overlay
+            const existingOverlay = document.querySelector('.' + overlayClassName);
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+        }
+    } else if (message.action === 'restoreOverlay') {
+        createOverlayIfRequired();
     }
 });
