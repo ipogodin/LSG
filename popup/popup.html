@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Popup</title>
-    <style>
-        /* Add styling as needed */
-        button {
-            margin: 10px;
-            padding: 5px 15px;
-        }
-    </style>
-</head>
+<html lang="en">
+    <head>
+        <title>Popup</title>
+        <link rel="stylesheet" href="popup.css"> <!-- Link to the external CSS file -->
+    </head>
     <body>
-        <button id="togglePlugin">Activate Plugin</button>
-        <button id="restoreOverlay">Restore Overlay</button>
+        <div class="icon-container">
+            <img id="togglePluginIcon" src="images/active_lsg.png" alt="Toggle Plugin" title="Toggle Plugin Activation">
+            <img id="restoreOverlayIcon" src="images/reactivate.png" alt="Restore Guard" title="Restore Submit Guard">
+        </div>
         <script src="popup.js"></script>
     </body>
 </html>
