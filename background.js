@@ -1,0 +1,1 @@
+// No background scripts for this extension
