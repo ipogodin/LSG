@@ -11,12 +11,12 @@ _Created with [AIPRM Prompt "Write Documentation for your Software"](https://www
 
 LeetCode Submit Guard: Accidental Submit Blocker
 
-Never face the frustration of accidental submissions on LeetCode again! Introducing LeetCode Submit Guard, 
-the must-have Google Chrome extension for every coder. Our sophisticated plugin acts as a protective shield, 
-ensuring that your hard work doesn't get submitted prematurely. 
-Whether you're in the middle of a challenge or double-checking your solution, 
-Submit Guard gives you peace of mind, allowing you to code with confidence. 
-Enhance your LeetCode experience and say goodbye to unintended clicks. 
+Never face the frustration of accidental submissions on LeetCode again! Introducing LeetCode Submit Guard,
+the must-have Google Chrome extension for every coder. Our sophisticated plugin acts as a protective shield,
+ensuring that your hard work doesn't get submitted prematurely.
+Whether you're in the middle of a challenge or double-checking your solution,
+Submit Guard gives you peace of mind, allowing you to code with confidence.
+Enhance your LeetCode experience and say goodbye to unintended clicks.
 Install now and secure your code submissions like a pro! 🛡️🖱️🚫.
 
 
@@ -74,9 +74,18 @@ The plugin does **not** gather or use any of the user's personal information. Fo
 
 ## 6. Installation & Setup
 
+#### Through google web store:
+
 1. Visit the Chrome Web Store.
 2. Search for **LeetCode Submit Guard**.
 3. Click "Add to Chrome" and adhere to the on-screen instructions.
+
+#### Manually
+
+1. Clone or download this repository into a folder on your computer
+2. Open google chrome and navigate to chrome://extensions/
+3. In the top tight corner switch on the **developer mode** switch
+4. In the left top corner click **Load unpacked** > select the folder you just cloned this project into
 
 ---
 
